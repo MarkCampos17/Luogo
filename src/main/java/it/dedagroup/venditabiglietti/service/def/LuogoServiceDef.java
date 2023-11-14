@@ -10,6 +10,7 @@ public interface LuogoServiceDef {
 	public Luogo update(Luogo luogo);
 	public void deleteLuogoById(long id);
 	public List<Luogo> findAll();
+	public List<Luogo> findAllByIds(List<Long> ids);
 	public Luogo findLuogoById(long id);
 	public List<Luogo> findAllLuogoByRiga1AndComune(String riga1, String comune);
 	public List<Luogo> findAllLuogoByRiga1(String riga1);

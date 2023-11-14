@@ -41,6 +41,11 @@ public class LuogoServiceImpl implements LuogoServiceDef {
 	}
 
 	@Override
+	public List<Luogo> findAllByIds(List<Long> ids) {
+		return luogoRepo.findAllById(ids);
+	}
+
+	@Override
 	public Luogo findLuogoById(long id) {
 		return luogoRepo.findById(id)
 				.orElseThrow(()->new ResponseStatusException(NOT_FOUND, "Errore, nessun luogo con id "+id+" trovato!"));
