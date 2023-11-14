@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import it.dedagroup.venditabiglietti.dto.request.LuogoDTORequest;
+import it.dedagroup.venditabiglietti.mapper.LuogoMapper;
 import it.dedagroup.venditabiglietti.model.Luogo;
 import it.dedagroup.venditabiglietti.service.def.LuogoServiceDef;
 import lombok.AllArgsConstructor;
@@ -24,16 +25,8 @@ import java.util.List;
 public class LuogoController {
 
     private final LuogoServiceDef luogoService;
-
-
-    /*@Operation(summary = "metodo per trovare tutte le presenze basate su un tipo di lavoro", description = "L'utente admin dopo aver effettuato un login trova una lista di presenze basate sul tipo di lavoro")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "L'utente admin dopo aver inserito il tipo di lavoro trova tutte le presenze basate sul tipo di lavoro inserito",
-                    content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = PresenzaDTOResponse.class))),
-            @ApiResponse(responseCode = "400", description = "L'utente admin inserisce un tipo di lavoro non valido",
-                    content = @Content(mediaType = MediaType.ALL_VALUE))
-    })*/
-
+    
+    private final LuogoMapper luogoMap;
 
     @Operation(summary = "Endpoint per salvare sul database un oggetto di tipo Luogo",
             description = "In questo Endpoint con una richiesta in Post, passiamo un oggetto di tipo Luogo," +
@@ -45,8 +38,8 @@ public class LuogoController {
             @ApiResponse(responseCode = "400", description ="Dopo aver passato l'oggetto tramite la RequestBody, ci viene restituito come risposta un errore",
             content = @Content(mediaType = MediaType.ALL_VALUE))})
     @PostMapping("/save")
-    public ResponseEntity<Luogo> aggiungiLuogo(@RequestBody Luogo luogo){
-        return ResponseEntity.ok(luogoService.save(luogo));
+    public ResponseEntity<Luogo> aggiungiLuogo(@RequestBody LuogoDTORequest luogo){
+        return ResponseEntity.ok(luogoService.save(luogoMap.fromRequesttoDto(luogo)));
     }
     
     
@@ -64,20 +57,7 @@ public class LuogoController {
         return ResponseEntity.ok("Luogo eliminato con successo!");
     }
     
-    
-    @Operation(summary = "Endpoint per modificare un oggetto già esistente",
-    description = "In questo Enpoint con una richiesta in Put, passiamo un oggetto di tipo Luogo, tramite RequestBody." +
-            "Chiamando il metodo update del LuogoService, che comunica con la repository, estraiamo dal database quello'oggetto" +
-            "lo modifichiamo e lo risalviamo con i dati modificati")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Dopo aver passato l'oggetto tramite la RequestBody in formato json, ci viene restituito un 200 confermando che le varie operazioni sono andate a buon fine.",
-            content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = LuogoDTORequest.class))),
-            @ApiResponse(responseCode = "400", description = "Dopo aver passato l'oggetto tramite la RequestBody, ci viene restituito come risposta un errore")})
-    @PutMapping("/update")
-    public ResponseEntity<Luogo> aggiornaLuogo(@RequestBody Luogo luogo){
-        return ResponseEntity.ok(luogoService.update(luogo));
-    }
-    
+
     
     @Operation(summary = "metodo cercare tutti i Luoghi", description = "In questo EndPoint ritorniamo una lista di luoghi tramite repository")
 	@ApiResponses(value = {

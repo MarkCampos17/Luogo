@@ -7,7 +7,6 @@ import it.dedagroup.venditabiglietti.model.Luogo;
 public interface LuogoServiceDef {
 
 	public Luogo save(Luogo luogo);
-	public Luogo update(Luogo luogo);
 	public void deleteLuogoById(long id);
 	public List<Luogo> findAll();
 	public List<Luogo> findAllByIds(List<Long> ids);

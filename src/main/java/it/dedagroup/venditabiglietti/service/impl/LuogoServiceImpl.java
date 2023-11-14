@@ -22,11 +22,7 @@ public class LuogoServiceImpl implements LuogoServiceDef {
 	public Luogo save(Luogo luogo) {
 		return luogoRepo.save(luogo);
 	}
-	@Transactional(rollbackOn = ResponseStatusException.class)
-	@Override
-	public Luogo update(Luogo luogo) {
-		return save(luogo);
-	}
+
 	@Transactional(rollbackOn = ResponseStatusException.class)
 	@Override
 	public void deleteLuogoById(long id) {
