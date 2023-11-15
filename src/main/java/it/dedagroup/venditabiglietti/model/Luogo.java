@@ -43,7 +43,13 @@ public class Luogo {
 	private boolean cancellato;
 	@Version
 	private long version;
-	
-	
 
+	public Luogo(@NonNull String riga1, String riga2, @NonNull String provincia, @NonNull String cap, @NonNull String comune, @NonNull String nazionalita) {
+		this.riga1 = riga1;
+		this.riga2 = riga2;
+		this.provincia = provincia;
+		this.cap = cap;
+		this.comune = comune;
+		this.nazionalita = nazionalita;
+	}
 }
