@@ -2,7 +2,9 @@ package it.dedagroup.venditabiglietti.service.impl;
 
 import java.util.List;
 
+import it.dedagroup.venditabiglietti.mapper.LuogoMapper;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.springframework.http.HttpStatus.*;
 import org.springframework.stereotype.Service;
@@ -13,14 +15,22 @@ import it.dedagroup.venditabiglietti.repository.LuogoRepository;
 import it.dedagroup.venditabiglietti.service.def.LuogoServiceDef;
 
 @Service
+@AllArgsConstructor
 public class LuogoServiceImpl implements LuogoServiceDef {
-	
-	@Autowired
-	LuogoRepository luogoRepo;
+
+	private final LuogoRepository luogoRepo;
+	private final LuogoMapper luogoMapper;
+
 	@Transactional(rollbackOn = ResponseStatusException.class)
 	@Override
 	public Luogo save(Luogo luogo) {
 		return luogoRepo.save(luogo);
+	}
+	@Transactional(rollbackOn = ResponseStatusException.class)
+	@Override
+	public Luogo modify(Luogo luogo) {
+		Luogo luogoModify = findLuogoById(luogo.getId());
+		return save(luogoMapper.modifyLuogo(luogoModify,luogo));
 	}
 
 	@Transactional(rollbackOn = ResponseStatusException.class)
@@ -58,16 +68,13 @@ public class LuogoServiceImpl implements LuogoServiceDef {
 	}
 
 	@Override
-	public Luogo findLuogoByRiga1AndRiga2AndComune(String riga1, String riga2, String comune) {
-		return luogoRepo.findLuogoByRiga1AndRiga2AndComune(riga1, riga2, comune)
-				.orElseThrow(()->
-				new ResponseStatusException(NOT_FOUND, 
-						"Errore, nessun luogo con indirizzo "+riga1+", "+riga2+", "+comune+" trovato!"));
+	public List<Luogo> findAllByRiga1AndRiga2AndComune(String riga1, String riga2, String comune) {
+		return luogoRepo.findAllByRiga1AndRiga2AndComune(riga1, riga2, comune);
 	}
 
 	@Override
-	public List<Luogo> findLuogoByRiga1AndRiga2(String riga1, String riga2) {
-		return luogoRepo.findLuogoByRiga1AndRiga2(riga1, riga2);
+	public List<Luogo> findAllByRiga1AndRiga2(String riga1, String riga2) {
+		return luogoRepo.findAllByRiga1AndRiga2(riga1, riga2);
 	}
 
 	@Override
