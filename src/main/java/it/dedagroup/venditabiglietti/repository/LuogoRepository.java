@@ -18,6 +18,4 @@ public interface LuogoRepository extends JpaRepository<Luogo, Long> {
 	public List<Luogo> findAllLuogoByProvincia(String provincia);
 	public List<Luogo> findAllLuogoByNazionalita(String nazionalita);
 	public List<Luogo> findAllLuogoByNazionalitaAndComune(String nazionalita, String comune);
-//	public Optional<Luogo> findLuogoByEventoId(long idEvento);
-//	public List<Luogo> findAllLuogoByCategoriaId(long idCategoria);
 }
