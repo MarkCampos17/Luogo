@@ -164,6 +164,9 @@ class VenditaBigliettiLuogoApplicationTests {
 				.andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
 				.andReturn();
 	}
+	
+	
+	
 	@Test
 	@Order(14)
 	public void save(){
@@ -262,5 +265,14 @@ class VenditaBigliettiLuogoApplicationTests {
 	public void findAllLuogoByNazionalitaAndComune(){
 		List<Luogo> luoghi = repo.findAllLuogoByNazionalitaAndComune("italiana","roma");
 		assertEquals(2,luoghi.size());
+	}
+	
+	@Test
+	@Order(29)
+	public void testTrovaTuttiLuoghi() throws Exception{
+		mock.perform(MockMvcRequestBuilders.get(FIND_ALL_PATH))
+			.andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
+			.andReturn();
+		
 	}
 }
