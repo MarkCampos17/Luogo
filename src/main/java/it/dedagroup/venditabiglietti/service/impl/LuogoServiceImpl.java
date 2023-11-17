@@ -5,7 +5,7 @@ import java.util.List;
 import it.dedagroup.venditabiglietti.mapper.LuogoMapper;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import static org.springframework.http.HttpStatus.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -37,7 +37,7 @@ public class LuogoServiceImpl implements LuogoServiceDef {
 	@Override
 	public void deleteLuogoById(long id) {
 		Luogo luogo=findLuogoById(id);
-		luogo.setCancellato(true);
+		luogo.setIsCancellato(true);
 		save(luogo);
 	}
 
