@@ -1,7 +1,5 @@
 package it.dedagroup.venditabiglietti.mapper;
 
-import java.util.List;
-
 import org.springframework.stereotype.Component;
 import it.dedagroup.venditabiglietti.model.Luogo;
 
@@ -15,7 +13,7 @@ public class LuogoMapper {
 		luogoToModify.setCap(luogo.getCap());
 		luogoToModify.setComune(luogo.getComune());
 		luogoToModify.setNazionalita(luogo.getNazionalita());
-		luogoToModify.setCancellato(luogo.isCancellato());
+		luogoToModify.setIsCancellato(luogo.isIsCancellato());
 		luogoToModify.setVersion(luogo.getVersion());
 		return luogoToModify;
 	}

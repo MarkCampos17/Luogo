@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class Luogo {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Column(nullable = false)
 	@NonNull
@@ -40,9 +40,11 @@ public class Luogo {
 	@NonNull
 	private String nazionalita;
 	@Column(columnDefinition = "boolean default false")
-	private boolean cancellato;
+	private boolean IsCancellato;
 	@Version
 	private long version;
+
+
 
 	public Luogo(@NonNull String riga1, String riga2, @NonNull String provincia, @NonNull String cap, @NonNull String comune, @NonNull String nazionalita) {
 		this.riga1 = riga1;
