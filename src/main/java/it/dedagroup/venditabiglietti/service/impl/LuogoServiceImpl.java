@@ -37,7 +37,7 @@ public class LuogoServiceImpl implements LuogoServiceDef {
 	@Override
 	public void deleteLuogoById(long id) {
 		Luogo luogo=findLuogoById(id);
-		luogo.setIsCancellato(true);
+		luogo.setCancellato(true);
 		save(luogo);
 	}
 
