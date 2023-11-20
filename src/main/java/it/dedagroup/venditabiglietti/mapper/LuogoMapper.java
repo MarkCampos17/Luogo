@@ -13,7 +13,7 @@ public class LuogoMapper {
 		luogoToModify.setCap(luogo.getCap());
 		luogoToModify.setComune(luogo.getComune());
 		luogoToModify.setNazionalita(luogo.getNazionalita());
-		luogoToModify.setIsCancellato(luogo.isIsCancellato());
+		luogoToModify.setCancellato(luogo.isCancellato());
 		luogoToModify.setVersion(luogo.getVersion());
 		return luogoToModify;
 	}

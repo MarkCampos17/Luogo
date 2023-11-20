@@ -40,7 +40,7 @@ public class Luogo {
 	@NonNull
 	private String nazionalita;
 	@Column(columnDefinition = "boolean default false")
-	private boolean IsCancellato;
+	private boolean isCancellato;
 	@Version
 	private long version;
 
