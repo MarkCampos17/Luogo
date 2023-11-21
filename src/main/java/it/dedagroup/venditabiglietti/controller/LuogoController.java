@@ -75,7 +75,11 @@ public class LuogoController {
     public ResponseEntity<List<Luogo>> findAll(){
         return ResponseEntity.ok(luogoService.findAll());
     }
-    
+
+    @PostMapping("/findAllByIds")
+    public ResponseEntity<List<Luogo>> findAllByIds(@RequestBody List<Long> ids){
+        return ResponseEntity.ok(luogoService.findAllByIds(ids));
+    }
     
     @Operation(summary = "metodo per cercare un Luogo inserendo L'ID", description = "In questo EndPoint cerchiamo il luogo, se presente, tramite L'id inserito nel "
 			+ "PathVariable, per poi ritornare l'oggetto selezionato tramite repository")
