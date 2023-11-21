@@ -32,6 +32,7 @@ public class LuogoCriteriaQuery {
             predicate.add(p);
         }
         Predicate[] predicateArray=predicate.toArray(new Predicate[predicate.size()]);
+        query.where(predicateArray);
         List<Tuple> list=manager.createQuery(query).getResultList();
         return list.stream().map(t->t.get(0, Luogo.class)).toList();
     }
