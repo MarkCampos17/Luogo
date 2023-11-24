@@ -1,5 +1,6 @@
 package it.dedagroup.venditabiglietti.repository;
 
+import it.dedagroup.venditabiglietti.dto.request.FiltroLuogoDTORequest;
 import it.dedagroup.venditabiglietti.model.Luogo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Tuple;
@@ -21,19 +22,16 @@ public class LuogoCriteriaQuery {
     @Autowired
     private EntityManager manager;
 
-    public List<Luogo> findFiltrati(Map<String, String> parametriLuogo){
+    public List<Luogo> findFiltrati(FiltroLuogoDTORequest request){
         CriteriaBuilder builder=manager.getCriteriaBuilder();
         CriteriaQuery<Tuple> query=builder.createQuery(Tuple.class);
         Root<Luogo> root=query.from(Luogo.class);
         List<Predicate> predicate=new ArrayList<>();
-        if(parametriLuogo==null) parametriLuogo=new HashMap<>();
-        for(String nomeParametro:parametriLuogo.keySet()){
-            Predicate p=builder.like(root.get(nomeParametro),"%"+parametriLuogo.get(nomeParametro)+"%");
-            predicate.add(p);
-        }
+        if(request.getProvincia() != null) predicate.add(builder.like(builder.lower(root.get("provincia")), "%"+ request.getProvincia().toLowerCase()+"%"));
+        if(request.getComune() != null) predicate.add(builder.like(builder.lower(root.get("comune")), "%"+ request.getComune().toLowerCase()+"%"));
         Predicate[] predicateArray=predicate.toArray(new Predicate[predicate.size()]);
         query.where(predicateArray);
-        List<Tuple> list=manager.createQuery(query).getResultList();
+        List<Tuple> list = manager.createQuery(query).getResultList();
         return list.stream().map(t->t.get(0, Luogo.class)).toList();
     }
 }

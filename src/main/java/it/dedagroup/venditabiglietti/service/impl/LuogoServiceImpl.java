@@ -3,12 +3,16 @@ package it.dedagroup.venditabiglietti.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import it.dedagroup.venditabiglietti.dto.request.FiltroLuogoDTORequest;
 import it.dedagroup.venditabiglietti.mapper.LuogoMapper;
+import it.dedagroup.venditabiglietti.repository.LuogoCriteriaQuery;
 import it.dedagroup.venditabiglietti.repository.LuogoCriteriaQuery;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 import static org.springframework.http.HttpStatus.*;
+
+import org.springframework.dao.OptimisticLockingFailureException;
 
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
@@ -24,12 +28,8 @@ public class LuogoServiceImpl implements LuogoServiceDef {
 
 	private final LuogoRepository luogoRepo;
 	private final LuogoMapper luogoMapper;
-	private final LuogoCriteriaQuery criteriaQuery;
+	private final LuogoCriteriaQuery luogoCriteriaQuery;
 
-	@Override
-	public List<Luogo> findByCriteriaQuery(Map<String, String> parametriLuogo){
-		return criteriaQuery.findFiltrati(parametriLuogo);
-	}
 	@Transactional(rollbackOn = ResponseStatusException.class)
 	@Override
 	public Luogo save(Luogo luogo) {
@@ -122,6 +122,11 @@ public class LuogoServiceImpl implements LuogoServiceDef {
 	@Override
 	public List<Luogo> findAllLuogoByNazionalitaAndComune(String nazionalita, String comune) {
 		return luogoRepo.findAllLuogoByNazionalitaAndComune(nazionalita, comune);
+	}
+
+	@Override
+	public List<Luogo> filtraLuoghi(FiltroLuogoDTORequest request) {
+		return luogoCriteriaQuery.findFiltrati(request);
 	}
 
 }
