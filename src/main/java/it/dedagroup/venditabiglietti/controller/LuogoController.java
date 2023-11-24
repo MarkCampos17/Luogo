@@ -16,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 
 @AllArgsConstructor
 @RestController
@@ -76,9 +77,14 @@ public class LuogoController {
         return ResponseEntity.ok(luogoService.findAll());
     }
 
-    @PostMapping("/findAllByIds")
+    @PostMapping(FIND_ALL_PATH+"ByIds")
     public ResponseEntity<List<Luogo>> findAllByIds(@RequestBody List<Long> ids){
         return ResponseEntity.ok(luogoService.findAllByIds(ids));
+    }
+
+    @PostMapping ("/filter")
+    public ResponseEntity<List<Luogo>> filtroLuoghi(@RequestBody Map<String, String> parametriLuogo){
+        return ResponseEntity.ok(luogoService.findByCriteriaQuery(parametriLuogo));
     }
     
     @Operation(summary = "metodo per cercare un Luogo inserendo L'ID", description = "In questo EndPoint cerchiamo il luogo, se presente, tramite L'id inserito nel "

@@ -1,10 +1,13 @@
 package it.dedagroup.venditabiglietti.service.def;
 
 import java.util.List;
+import java.util.Map;
 
 import it.dedagroup.venditabiglietti.model.Luogo;
 
 public interface LuogoServiceDef {
+
+	List<Luogo> findByCriteriaQuery(Map<String, String> parametriLuogo);
 
 	public Luogo save(Luogo luogo);
 	public Luogo modify(Luogo luogo);

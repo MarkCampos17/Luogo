@@ -1,12 +1,16 @@
 package it.dedagroup.venditabiglietti.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import it.dedagroup.venditabiglietti.mapper.LuogoMapper;
+import it.dedagroup.venditabiglietti.repository.LuogoCriteriaQuery;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 import static org.springframework.http.HttpStatus.*;
+
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -20,25 +24,43 @@ public class LuogoServiceImpl implements LuogoServiceDef {
 
 	private final LuogoRepository luogoRepo;
 	private final LuogoMapper luogoMapper;
+	private final LuogoCriteriaQuery criteriaQuery;
 
+	@Override
+	public List<Luogo> findByCriteriaQuery(Map<String, String> parametriLuogo){
+		return criteriaQuery.findFiltrati(parametriLuogo);
+	}
 	@Transactional(rollbackOn = ResponseStatusException.class)
 	@Override
 	public Luogo save(Luogo luogo) {
-		return luogoRepo.save(luogo);
+		try{
+			return luogoRepo.save(luogo);
+		}catch (OptimisticLockingFailureException e){
+			throw new OptimisticLockingFailureException("Questo oggetto è stato modificato!");
+		}
+
 	}
 	@Transactional(rollbackOn = ResponseStatusException.class)
 	@Override
 	public Luogo modify(Luogo luogo) {
-		Luogo luogoModify = findLuogoById(luogo.getId());
-		return save(luogoMapper.modifyLuogo(luogoModify,luogo));
+		try {
+			Luogo luogoModify = findLuogoById(luogo.getId());
+			return save(luogoMapper.modifyLuogo(luogoModify,luogo));
+		}catch (OptimisticLockingFailureException e){
+			throw new OptimisticLockingFailureException("Questo oggetto è stato modificato!");
+		}
 	}
 
 	@Transactional(rollbackOn = ResponseStatusException.class)
 	@Override
 	public void deleteLuogoById(long id) {
-		Luogo luogo=findLuogoById(id);
-		luogo.setCancellato(true);
-		save(luogo);
+		try{
+			Luogo luogo=findLuogoById(id);
+			luogo.setCancellato(true);
+			save(luogo);
+		}catch (OptimisticLockingFailureException e){
+			throw new OptimisticLockingFailureException("Questo oggetto è stato modificato!");
+		}
 	}
 
 	@Override
