@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import it.dedagroup.venditabiglietti.dto.request.FiltroLuogoDTORequest;
 import it.dedagroup.venditabiglietti.model.Luogo;
 import it.dedagroup.venditabiglietti.service.def.LuogoServiceDef;
 import lombok.AllArgsConstructor;
@@ -80,11 +81,6 @@ public class LuogoController {
     @PostMapping(FIND_ALL_PATH+"ByIds")
     public ResponseEntity<List<Luogo>> findAllByIds(@RequestBody List<Long> ids){
         return ResponseEntity.ok(luogoService.findAllByIds(ids));
-    }
-
-    @PostMapping ("/filter")
-    public ResponseEntity<List<Luogo>> filtroLuoghi(@RequestBody Map<String, String> parametriLuogo){
-        return ResponseEntity.ok(luogoService.findByCriteriaQuery(parametriLuogo));
     }
     
     @Operation(summary = "metodo per cercare un Luogo inserendo L'ID", description = "In questo EndPoint cerchiamo il luogo, se presente, tramite L'id inserito nel "
@@ -205,5 +201,10 @@ public class LuogoController {
     @GetMapping(FIND_ALL_BY_NAZIONALITA_AND_COMUNE+"/{nazionalita}/{comune}")
     public ResponseEntity<List<Luogo>> findAllLuogoByNazionalitaAndComune(@PathVariable String nazionalita, @PathVariable String comune){
         return ResponseEntity.ok(luogoService.findAllLuogoByNazionalitaAndComune(nazionalita, comune));
+    }
+
+    @GetMapping(FILTRO_LUOGHI)
+    public ResponseEntity<List<Luogo>> filtraLuoghi(@RequestBody FiltroLuogoDTORequest request){
+        return ResponseEntity.ok(luogoService.filtraLuoghi(request));
     }
 }
