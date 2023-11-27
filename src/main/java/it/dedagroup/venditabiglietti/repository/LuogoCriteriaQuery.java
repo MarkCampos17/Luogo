@@ -34,4 +34,22 @@ public class LuogoCriteriaQuery {
         List<Tuple> list = manager.createQuery(query).getResultList();
         return list.stream().map(t->t.get(0, Luogo.class)).toList();
     }
+    						  		 //nomeAttributo  //valore
+    public List<Luogo> filtraLuoghiMap(Map<String, String> mapLuogo){
+    	CriteriaBuilder builder = manager.getCriteriaBuilder();
+    	CriteriaQuery<Tuple> query = builder.createQuery(Tuple.class);
+    	Root<Luogo> root = query.from(Luogo.class);
+    	
+    	List<Predicate> predicate = new ArrayList<>();
+    	if(mapLuogo == null) mapLuogo = new HashMap<>();
+    	for(String nomeArgomento: mapLuogo.keySet()) {
+    		Predicate p = builder.like(root.get(nomeArgomento).as(String.class), "%"+mapLuogo.get(nomeArgomento)+"%");
+    		predicate.add(p);
+    	}
+    	Predicate[] predicateArray = predicate.toArray(new Predicate[predicate.size()]);
+    	query.multiselect(root).where(predicateArray);
+    	List<Tuple> list = manager.createQuery(query).getResultList();
+    	return list.stream().map(t -> t.get(0, Luogo.class)).toList();
+    	
+    }
 }

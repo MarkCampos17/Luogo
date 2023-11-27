@@ -25,4 +25,6 @@ public interface LuogoServiceDef {
 	public List<Luogo> findAllLuogoByNazionalitaAndComune(String nazionalita, String comune);
 
 	public List<Luogo> filtraLuoghi(FiltroLuogoDTORequest request);
+	
+	public List<Luogo> filtraLuoghiMap(Map<String, String> mapLuogo);
 }

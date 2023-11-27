@@ -99,7 +99,7 @@ public class LuogoController {
     @Operation(summary = "metodo per cercare una lista di Luoghi inserendo riga1", description = "In questo EndPoint cerchiamo una lista di Luoghi tramite la riga1 inserita nel "
 			+ "PathVariable, per poi ritornare la lista di Luoghi tramite repository")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Lista di Luoghi trovata tramite riga1", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo.class))),
+			@ApiResponse(responseCode = "200", description = "Lista di Luoghi trovata tramite riga1", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo[].class))),
 			@ApiResponse(responseCode = "400", description = "Lista di Luoghi non trovata, errato inserimento del PathVariable, ci viene restituito come risposta un errore", content = @Content(mediaType = MediaType.ALL_VALUE))
 				})
     @GetMapping(FIND_ALL_BY_RIGA1_PATH+"/{riga1}")
@@ -111,7 +111,7 @@ public class LuogoController {
     @Operation(summary = "metodo per cercare una lista di Luoghi inserendo riga1 e comune", description = "In questo EndPoint cerchiamo una lista di Luoghi tramite la riga1 e il comune inseriti nel "
 			+ "PathVariable, per poi ritornare la lista di Luoghi tramite repository")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Lista di Luoghi trovata tramite riga1 e comune", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo.class))),
+			@ApiResponse(responseCode = "200", description = "Lista di Luoghi trovata tramite riga1 e comune", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo[].class))),
 			@ApiResponse(responseCode = "400", description = "Lista di Luoghi non trovata, errato inserimento del PathVariable, ci viene restituito come risposta un errore", content = @Content(mediaType = MediaType.ALL_VALUE))
 				})
     @GetMapping(FIND_ALL_BY_RIGA1_AND_COMUNE+"/{riga1}/{comune}")
@@ -123,7 +123,7 @@ public class LuogoController {
     @Operation(summary = "metodo per cercare una lista di Luoghi inserendo riga1 e riga2", description = "In questo EndPoint cerchiamo una lista di Luoghi tramite la riga1 e riga2 inseriti nel "
 			+ "PathVariable, per poi ritornare la lista di Luoghi tramite repository")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Lista di Luoghi trovata tramite riga1 e riga2", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo.class))),
+			@ApiResponse(responseCode = "200", description = "Lista di Luoghi trovata tramite riga1 e riga2", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo[].class))),
 			@ApiResponse(responseCode = "400", description = "Lista di Luoghi non trovata, errato inserimento del PathVariable, ci viene restituito come risposta un errore", content = @Content(mediaType = MediaType.ALL_VALUE))
 				})
     @GetMapping(FIND_ALL_BY_RIGA1_RIGA2_PATH+"/{riga1}/{riga2}")
@@ -135,7 +135,7 @@ public class LuogoController {
     @Operation(summary = "metodo per cercare una lista di Luoghi inserendo riga1, riga2 e comune", description = "In questo EndPoint cerchiamo una lista di Luoghi tramite la riga1, la riga2 ed il comune inseriti nel "
 			+ "PathVariable, per poi ritornare una Lista di Luoghi tramite repository")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Lista di luoghi trovata tramite riga1, riga2 e comune", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo.class))),
+			@ApiResponse(responseCode = "200", description = "Lista di luoghi trovata tramite riga1, riga2 e comune", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo[].class))),
 			@ApiResponse(responseCode = "400", description = "Lista di luoghi non trovata, errato inserimento del PathVariable, ci viene restituito come risposta un errore", content = @Content(mediaType = MediaType.ALL_VALUE))
 				})
     @GetMapping(FIND_ALL_BY_RIGA1_RIGA2_COMUNE_PATH+"/{riga1}/{riga2}/{comune}")
@@ -147,7 +147,7 @@ public class LuogoController {
     @Operation(summary = "metodo per cercare una lista di Luoghi inserendo il cap", description = "In questo EndPoint cerchiamo una lista di Luoghi tramite il cap inserito nel "
 			+ "PathVariable, per poi ritornare la lista di Luoghi tramite repository")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Lista di Luoghi trovata tramite cap", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo.class))),
+			@ApiResponse(responseCode = "200", description = "Lista di Luoghi trovata tramite cap", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo[].class))),
 			@ApiResponse(responseCode = "400", description = "Lista di Luoghi non trovata, errato inserimento del PathVariable, ci viene restituito come risposta un errore", content = @Content(mediaType = MediaType.ALL_VALUE))
 				})
     @GetMapping(FIND_ALL_BY_CAP_PATH+"/{cap}")
@@ -159,7 +159,7 @@ public class LuogoController {
     @Operation(summary = "metodo per cercare una lista Luoghi inserendo il comune", description = "In questo EndPoint cerchiamo una lista di Luoghi tramite il comune inserito nel "
 			+ "PathVariable, per poi ritornare la lista di Luoghi tramite repository")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Lista di Luoghi trovata tramite comune", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo.class))),
+			@ApiResponse(responseCode = "200", description = "Lista di Luoghi trovata tramite comune", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo[].class))),
 			@ApiResponse(responseCode = "400", description = "Lista di Luoghi non trovata, errato inserimento del PathVariable, ci viene restituito come risposta un errore", content = @Content(mediaType = MediaType.ALL_VALUE))
 				})
     @GetMapping(FIND_ALL_BY_COMUNE_PATH+"/{comune}")
@@ -171,7 +171,7 @@ public class LuogoController {
     @Operation(summary = "metodo per cercare una lista Luoghi inserendo la provincia", description = "In questo EndPoint cerchiamo una lista di Luoghi tramite la provincia inserita nel "
 			+ "PathVariable, per poi ritornare la lista di Luoghi tramite repository")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Lista di Luoghi trovata tramite provincia", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo.class))),
+			@ApiResponse(responseCode = "200", description = "Lista di Luoghi trovata tramite provincia", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo[].class))),
 			@ApiResponse(responseCode = "400", description = "Lista di Luoghi non trovata, errato inserimento del PathVariable, ci viene restituito come risposta un errore", content = @Content(mediaType = MediaType.ALL_VALUE))
 				})
     @GetMapping(FIND_ALL_BY_PROVINCIA_PATH+"/{provincia}")
@@ -183,7 +183,7 @@ public class LuogoController {
     @Operation(summary = "metodo per cercare una lista di Luoghi inserendo la nazionalità", description = "In questo EndPoint cerchiamo una lista di Luoghi tramite la nazionalità inserita nel "
 			+ "PathVariable, per poi ritornare la lista di Luoghi tramite repository")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Lista di Luoghi trovata tramite nazionalità", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo.class))),
+			@ApiResponse(responseCode = "200", description = "Lista di Luoghi trovata tramite nazionalità", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo[].class))),
 			@ApiResponse(responseCode = "400", description = "Lista di Luoghi non trovata, errato inserimento del PathVariable, ci viene restituito come risposta un errore", content = @Content(mediaType = MediaType.ALL_VALUE))
 				})
     @GetMapping(FIND_ALL_BY_NAZIONALITA_PATH+"/{nazionalita}")
@@ -195,7 +195,7 @@ public class LuogoController {
     @Operation(summary = "metodo per cercare una lista di Luoghi inserendo la nazionalità ed il comune", description = "In questo EndPoint cerchiamo una lista di Luoghi tramite la nazionalità ed il comune inseriti nel "
 			+ "PathVariable, per poi ritornare la lista di Luoghi tramite repository")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Lista di Luoghi trovata tramite nazionalità e comune", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo.class))),
+			@ApiResponse(responseCode = "200", description = "Lista di Luoghi trovata tramite nazionalità e comune", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo[].class))),
 			@ApiResponse(responseCode = "400", description = "Lista di Luoghi non trovata, errato inserimento del PathVariable, ci viene restituito come risposta un errore", content = @Content(mediaType = MediaType.ALL_VALUE))
 				})
     @GetMapping(FIND_ALL_BY_NAZIONALITA_AND_COMUNE+"/{nazionalita}/{comune}")
@@ -206,5 +206,16 @@ public class LuogoController {
     @GetMapping(FILTRO_LUOGHI)
     public ResponseEntity<List<Luogo>> filtraLuoghi(@RequestBody FiltroLuogoDTORequest request){
         return ResponseEntity.ok(luogoService.filtraLuoghi(request));
+    }
+    
+    
+    @Operation(summary = "metodo per cerlare una lista di luoghi inserendo per ogni attributo una chiave valore(String) e un valore(String)",
+    			description = "in questo metodo inserendo attributo di luogo (utilizzando un Map) una chiave ed un valore entrambe String, ci ritornerà una Lista di Luoghi da noi selezionati,")
+    @ApiResponses(value = {
+    		@ApiResponse(responseCode = "200", description = "Lista Luoghi trovata tramite attributi ineriti", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo[].class)))
+    })
+    @GetMapping(FILTRO_LUOGHI_MAP)
+    public ResponseEntity<List<Luogo>> filtraLuoghiMap(@RequestBody Map<String, String> mapLuogo){
+        return ResponseEntity.ok(luogoService.filtraLuoghiMap(mapLuogo));
     }
 }

@@ -17,4 +17,6 @@ public class UtilPath {
     public static final String FIND_ALL_BY_NAZIONALITA_PATH = LUOGO_PATH + "/find/all/nazionalita" ;
     public static final String FIND_ALL_BY_NAZIONALITA_AND_COMUNE = LUOGO_PATH + "/find/all/nazionalita&comune" ;
     public static final String FILTRO_LUOGHI = LUOGO_PATH + "/filtroLuogo";
+    
+    public static final String FILTRO_LUOGHI_MAP = LUOGO_PATH + "/filtroLuogoMap";
 }
