@@ -132,5 +132,4 @@ public class LuogoServiceImpl implements LuogoServiceDef {
 	public List<Luogo> filtraLuoghiMap(Map<String, String> mapLuogo) {
 		return luogoCriteriaQuery.filtraLuoghiMap(mapLuogo);
 	}
-
 }

@@ -10,7 +10,6 @@ import it.dedagroup.venditabiglietti.dto.request.FiltroLuogoDTORequest;
 import it.dedagroup.venditabiglietti.model.Luogo;
 import it.dedagroup.venditabiglietti.service.def.LuogoServiceDef;
 import lombok.AllArgsConstructor;
-
 import static it.dedagroup.venditabiglietti.utils.UtilPath.*;
 import static org.springframework.http.HttpStatus.*;
 import org.springframework.http.MediaType;
@@ -79,7 +78,7 @@ public class LuogoController {
     }
 
     @PostMapping(FIND_ALL_PATH+"ByIds")
-    public ResponseEntity<List<Luogo>> findAllByIds(@RequestBody List<Long> ids){
+    public ResponseEntity<List<Luogo>> s(@RequestBody List<Long> ids){
         return ResponseEntity.ok(luogoService.findAllByIds(ids));
     }
     
@@ -214,7 +213,8 @@ public class LuogoController {
     @ApiResponses(value = {
     		@ApiResponse(responseCode = "200", description = "Lista Luoghi trovata tramite attributi ineriti", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Luogo[].class)))
     })
-    @GetMapping(FILTRO_LUOGHI_MAP)
+
+    @PostMapping(FILTRO_LUOGHI_MAP)
     public ResponseEntity<List<Luogo>> filtraLuoghiMap(@RequestBody Map<String, String> mapLuogo){
         return ResponseEntity.ok(luogoService.filtraLuoghiMap(mapLuogo));
     }

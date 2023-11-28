@@ -50,6 +50,5 @@ public class LuogoCriteriaQuery {
     	query.multiselect(root).where(predicateArray);
     	List<Tuple> list = manager.createQuery(query).getResultList();
     	return list.stream().map(t -> t.get(0, Luogo.class)).toList();
-    	
     }
 }
