@@ -78,7 +78,7 @@ public class LuogoController {
     }
 
     @PostMapping(FIND_ALL_PATH+"ByIds")
-    public ResponseEntity<List<Luogo>> s(@RequestBody List<Long> ids){
+    public ResponseEntity<List<Luogo>> findAllByIds(@RequestBody List<Long> ids){
         return ResponseEntity.ok(luogoService.findAllByIds(ids));
     }
     
