@@ -202,7 +202,7 @@ public class LuogoController {
         return ResponseEntity.ok(luogoService.findAllLuogoByNazionalitaAndComune(nazionalita, comune));
     }
 
-    @GetMapping(FILTRO_LUOGHI)
+    @PostMapping(FILTRO_LUOGHI)
     public ResponseEntity<List<Luogo>> filtraLuoghi(@RequestBody FiltroLuogoDTORequest request){
         return ResponseEntity.ok(luogoService.filtraLuoghi(request));
     }

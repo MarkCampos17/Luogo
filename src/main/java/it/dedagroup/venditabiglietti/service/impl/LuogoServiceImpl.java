@@ -126,7 +126,7 @@ public class LuogoServiceImpl implements LuogoServiceDef {
 
 	@Override
 	public List<Luogo> filtraLuoghi(FiltroLuogoDTORequest request) {
-		return luogoCriteriaQuery.findFiltrati(request);
+		return luogoCriteriaQuery.findFiltrati(request).stream().filter(l-> !l.isCancellato()).toList();
 	}
 	@Override
 	public List<Luogo> filtraLuoghiMap(Map<String, String> mapLuogo) {
